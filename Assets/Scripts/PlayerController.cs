@@ -37,7 +37,14 @@ public class PlayerController : MonoBehaviour
         else if (lineToMove == 1)
             targetPosition += Vector3.right * lineDistance;
 
-        transform.position = targetPosition;
+        if (transform.position == targetPosition)
+            return;
+        Vector3 diff = targetPosition - transform.position;
+        Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
+        if (moveDir.sqrMagnitude < diff.sqrMagnitude)
+            controller.Move(moveDir);
+        else
+            controller.Move(diff);
     }
     // Update is called once per frame
     void FixedUpdate()
