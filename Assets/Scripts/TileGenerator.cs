@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileGenerator : MonoBehaviour
 {
-    public GameObject[] tilePrefabs;
+    public GameObject tilePrefab;
     private List<GameObject> activeTiles = new List<GameObject>();
     private float spawnPos = 0;
     private float tileLength = 30;
@@ -16,7 +16,7 @@ public class TileGenerator : MonoBehaviour
     {
         for (int i =0; i < startTiles; i++)
         {
-            SpawnTile(Random.Range(0,tilePrefabs.Length));
+            SpawnTile();
         }
     }
 
@@ -25,15 +25,15 @@ public class TileGenerator : MonoBehaviour
     {
         if (player.position.z - 30 > spawnPos - (startTiles * tileLength))
         {
-            SpawnTile(Random.Range(0,tilePrefabs.Length));
+            SpawnTile();
             DeleteTile();
         }
             
     }
 
-    private void SpawnTile(int tileIndex)
+    private void SpawnTile()
     {
-        GameObject nextTile = Instantiate(tilePrefabs[tileIndex], transform.forward * spawnPos, transform.rotation);
+        GameObject nextTile = Instantiate(tilePrefab, transform.forward * spawnPos, transform.rotation);
         activeTiles.Add(nextTile);
         spawnPos += tileLength;
     }

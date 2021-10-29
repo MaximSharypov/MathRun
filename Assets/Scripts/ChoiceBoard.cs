@@ -14,9 +14,10 @@ public class ChoiceBoard : MonoBehaviour
 
     void Start()
     {
-        equation = GameObject.Find("Equation");
-        leftChoice = GameObject.Find("LeftChoice");
-        rightChoice = GameObject.Find("RightChoice");
+        Instantiate(equation, new Vector3(0, 3, transform.position.z + 2), transform.rotation);
+        Instantiate(leftChoice, new Vector3(-2, 1, transform.position.z + 2), transform.rotation);
+        Instantiate(rightChoice, new Vector3(2, 1, transform.position.z + 2), transform.rotation);
+        Debug.Log(equation.GetComponent<TextMesh>().text);
         do {
             firstValue = Random.Range(1,6);
             secondValue = Random.Range(1,6);
@@ -52,7 +53,7 @@ public class ChoiceBoard : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
 }
